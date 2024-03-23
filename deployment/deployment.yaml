@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-hello-world-example
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: spring-hello-world-example
+  template:
+    metadata:
+      labels:
+        app: spring-hello-world-example
+    spec:
+      containers:
+        - name: spring-hello-world-example
+          image: sorravitb/spring_helloworld:1.0.0
+          ports:
+            - containerPort: 8080
