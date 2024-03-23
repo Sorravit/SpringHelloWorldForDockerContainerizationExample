@@ -1,4 +1,4 @@
 #!/bin/bash
-docker run -it -v $(pwd):/workspace:cached -w /workspace -v gradle-cache:/home/gradle/.gradle gradle gradle clean build
-docker build --pull --label org.label-schema.vcs-ref=$(git rev-parse HEAD) -t spring_helloworld: .latest
+docker run --rm -v "$(pwd)":/app -w /app gradle:7.2-jdk11 gradle clean build
+docker build --pull --label org.label-schema.vcs-ref=$(git rev-parse HEAD) -t spring_helloworld:latest .
 docker run -p8080:8080 spring_helloworld
