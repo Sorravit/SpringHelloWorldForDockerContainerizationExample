@@ -9,7 +9,7 @@ spec:
   accessModes:
     - ReadWriteOnce
   local:
-    path: /Users/sorravit/others/jenkins-data
+    path: /Users/sorravit/others/jenkins-data # Make sure to update this to match your local machine
   nodeAffinity:
     required:
       nodeSelectorTerms:
