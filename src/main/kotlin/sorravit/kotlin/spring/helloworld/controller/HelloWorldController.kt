@@ -12,6 +12,7 @@ class HelloWorldController {
     @ResponseBody
     @GetMapping("/")
     fun helloWorld(): String {
-        return "Hello from the container side (\"Hopefully\")"
+        println("Some one is calling me!!!")
+        return "Hello from the container side (\"Hopefully\"), you must have called a thousands times"
     }
 }
