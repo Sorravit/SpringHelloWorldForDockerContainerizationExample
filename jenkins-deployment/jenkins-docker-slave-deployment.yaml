@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jenkin-docker-slave
+  namespace: devops-tools
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: docker
+  template:
+    metadata:
+      labels:
+        app: docker
+    spec:
+      containers:
+        - name: docker
+          image: sorravitb/dind
+          securityContext:
+            privileged: true
