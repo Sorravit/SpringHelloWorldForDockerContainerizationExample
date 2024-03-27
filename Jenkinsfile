@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent {label 'docker'}
 
     stages {
         stage('lint') {
@@ -14,9 +14,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                echo "Building . . . ."
-                sleep 10
-                echo "Building . . . . complete"
+                sh "sh run.sh build_docker"
             }
         }
         stage('List file') {

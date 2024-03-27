@@ -1,11 +1,13 @@
 #!/bin/sh
+DOCKER_TAG=spring_helloworld
+
 goal_build_and_tag() {
   docker run --rm -v "$(pwd)":/app -w /app gradle:7.2-jdk11 gradle clean build
   docker build --pull --label org.label-schema.vcs-ref=$(git rev-parse HEAD) -t spring_helloworld:latest .
 }
 
-goal_run_docker(){
-  docker run -p8080:8080 spring_helloworld
+goal_build_docker() {
+  docker build -f Dockerfile-Multi-Stage -t $DOCKER_TAG .
 }
 
 goal_hello() {
@@ -18,7 +20,7 @@ else
   echo "usage: $0 <goal>
   hello             -- says Hello
   build_and_tag     -- build and tag docker with latest
-  run_docker        -- run docker that we build
+  build_docker        -- run docker that we build
   "
   exit 1
 fi
